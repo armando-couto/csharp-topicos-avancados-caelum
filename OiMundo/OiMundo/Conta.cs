@@ -15,7 +15,18 @@ namespace OiMundo
 
         public void Saca(double valorASerSacado)
         {
-            this.Saldo -= valorASerSacado;
+            if (valorASerSacado < 0.0)
+            {
+                throw new ArgumentException();
+            }
+            if (valorASerSacado > this.Saldo)
+            {
+                throw new SaldoInsuficienteException();
+            }
+            else
+            {
+                this.Saldo -= valorASerSacado;
+            }
         }
 
         public virtual void Deposita(double valorASerDepositado)
